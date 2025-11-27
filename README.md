@@ -52,6 +52,10 @@ Crouch three times to exit freecam
 
 `/waypoint go (waypoint name)` teleports your freecam to a given waypoint
 
+`/tocam` teleports your player to your camera position
+
+`/z` Toggles zoom mode
+
  
 
 # Chunk States

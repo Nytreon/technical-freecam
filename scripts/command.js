@@ -1,5 +1,5 @@
 import { system, CommandPermissionLevel, CustomCommandParamType, CustomCommandStatus } from "@minecraft/server";
-import { updateCamPos, getChunkStateString, toggleFreecam, toggleCameraView, teleportPlayerToCamera} from "./main.js"
+import { updateCamPos, getChunkStateString, toggleFreecam, toggleCameraView, teleportPlayerToCamera, toggleZoom } from "./main.js"
 import { Waypoints } from "./waypoint.js"
 
 system.beforeEvents.startup.subscribe(e => {
@@ -130,3 +130,23 @@ system.beforeEvents.startup.subscribe(e => {
         });
     });
 });
+
+system.beforeEvents.startup.subscribe(e => {
+    const { customCommandRegistry: reg } = e;
+
+    reg.registerCommand({
+        name: "fc:z",
+        description: "Zooms in your FOV.",
+        permissionLevel: CommandPermissionLevel.Admin,
+    }, (origin) => {
+        system.run( () => {
+            const player = origin.sourceEntity;
+            try {
+                toggleZoom(player)
+            } catch(error) {
+                player.sendMessage(`§c${error}`)
+            }
+        });
+    });
+});
+

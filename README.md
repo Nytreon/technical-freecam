@@ -1,4 +1,4 @@
-# Technical Freecam
+# **Technical Freecam**
 **A freecam for technical players**
 
 
@@ -7,7 +7,7 @@
 
 
 
-**Features:**
+# Features:
 
 -No entity anchor
 
@@ -24,13 +24,13 @@
 -Multiplayer supported
 
 
- **Waypoints**
+# Waypoints
  
  Waypoints allow you to set a point and then teleport your camera to it later without having to remember the coordinate. Waypoints are persistent and exist past relog.
 
  
 
-**How to use**
+# How to use
 
 Crouch three times to enter freecam
 
@@ -54,7 +54,7 @@ Crouch three times to exit freecam
 
  
 
-**Chunk States**
+# Chunk States
 
 The chunk states that are detected are
 

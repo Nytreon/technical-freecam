@@ -1,0 +1,56 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "Technical Freecam",
+		"description": "For technical players who need to see into chunks they can't access. \n By Nytreon",
+		"min_engine_version": [
+			1,
+			21,
+			50
+		],
+		"uuid": "a543363e-01ed-4891-9967-b83172f93451",
+		"version": [
+			2,
+			1,
+			3
+		]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "cbf19155-02ea-4f6d-a8ae-60aff7b01847",
+			"version": [
+				1,
+				0,
+				0
+			]
+		},
+		{
+			"type": "script",
+			"language": "javascript",
+			"uuid": "a1b6fd23-900e-41aa-8e0f-08a23356cbfe",
+			"entry": "scripts/main.js",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	],
+	"dependencies": [
+		
+		{
+			"module_name": "@minecraft/server",
+			"version": "2.2.0"
+		},
+		{
+			"module_name": "@minecraft/server-gametest",
+			"version": "1.0.0-beta"
+		},
+		{
+			"module_name": "@minecraft/server-ui",
+			"version": "2.1.0-beta"
+		}
+		  
+	]
+}

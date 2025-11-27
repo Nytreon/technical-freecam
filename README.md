@@ -38,6 +38,8 @@ Crouch three times to exit freecam
 
 `/tpcam (position)` to teleport the camera to a given location
 
+`tocam` Teleport you to your freecam camera.
+
 `/showstate (position)` to show a chunk's state at a given position
 
 `/fc` toggles you between freecam and the default camera

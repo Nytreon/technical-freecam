@@ -4,6 +4,7 @@ import {} from "./command.js"
 const lastForwardTap = new Map(); 
 const forwardButtonState = new Map(); 
 export const playerMap = {};
+const zoomMap = {};
 const doubleTapWindow = 5; 
 let currentTick = 0; 
 const sneakTapTimes = new Map(); 
@@ -19,7 +20,8 @@ function addToMap(player) {
     map.pos = player.location;
     map.fastFly = false;
     map.chunkState = "§aLoaded";
-    map.toggleView = 0
+    map.toggleView = 0;
+    map.zoom = 0;
     playerMap[player.name] = map;
 }
 
@@ -72,6 +74,7 @@ export function toggleFreecam(player) {
         }, 2);
     }
 }
+
 export function toggleCameraView(player) {
     const playerObj = playerMap[player.name]
     if (playerObj) {
@@ -94,6 +97,17 @@ function translateValue(rot) {
     return {
         h: -Math.atan2(rot.x, rot.z) * 180 / Math.PI,
         v: -rot.y * 90,
+    }
+}
+
+export function toggleZoom(player) {
+    const playerObj = zoomMap[player.name]
+    if (!playerObj) {
+        player.runCommand("camera @s fov_set 1 0 linear");
+        zoomMap[player.name] = 1;
+    } else {
+        player.runCommand("camera @s fov_clear");
+        delete zoomMap[player.name];
     }
 }
 
@@ -290,4 +304,3 @@ let fcinterval = system.runInterval(() => {
         }
     }
 })
-

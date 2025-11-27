@@ -3,14 +3,24 @@
 
 
 
+
+
+
+
 **Features:**
 
 -No entity anchor
+
 -chunk state information
+
 -camera teleport command
+
 -chunk state command
+
 -complete freecam without loading chunks
+
 -allows you to add waypoints to teleport to so you only have to type a position once 
+
 -Multiplayer supported
 
 

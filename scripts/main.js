@@ -42,14 +42,29 @@ world.afterEvents.playerButtonInput.subscribe((eventData) => {
     }
 });
 
+function toggleMovement(player, mode) {
+    const cmd = "inputpermission set @s"
+    const e = "enabled"
+    const d = "disabled"
+    if (mode) {
+        player.runCommand(`${cmd} lateral_movement ${d}`);
+        player.runCommand(`${cmd} jump ${d}`);
+        player.runCommand(`${cmd} sneak ${d}`);
+    } else {
+        player.runCommand(`${cmd} lateral_movement ${e}`);
+        player.runCommand(`${cmd} jump ${e}`);
+        player.runCommand(`${cmd} sneak ${e}`);
+    }
+}
+
 export function toggleFreecam(player) {
     if (!playerMap[player.name]) {
         addToMap(player)
-        player.runCommand("inputpermission set @s movement disabled");
+        toggleMovement(player, 1)
     }
     else if (playerMap[player.name]) {
         removeFromMap(player)
-        player.runCommand("inputpermission set @s movement enabled");
+        toggleMovement(player, 0)
         system.runTimeout(() => {
             player.runCommand("camera @s clear");
         }, 2);
@@ -59,10 +74,10 @@ export function toggleCameraView(player) {
     const playerObj = playerMap[player.name]
     if (playerObj) {
         if (playerObj.toggleView) {
-            player.runCommand("inputpermission set @s movement disabled");
+            toggleMovement(player, 1) 
             playerMap[player.name].toggleView = 0
         } else {
-            player.runCommand("inputpermission set @s movement enabled");
+            toggleMovement(player, 0) 
             system.runTimeout(() => {
                 player.runCommand("camera @s clear");
             }, 2);
@@ -264,4 +279,3 @@ let fcinterval = system.runInterval(() => {
         }
     }
 })
-

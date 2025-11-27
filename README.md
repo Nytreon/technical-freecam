@@ -65,6 +65,6 @@ The chunk states that are detected are
 -Invalid: Chunks that do not exist currently in memory.
 
 
-**Official Page Curseforge Page**
+# **Official Page Curseforge Page**
 [https://www.curseforge.com/minecraft-bedrock/scripts/technical-freecam
 ](url)

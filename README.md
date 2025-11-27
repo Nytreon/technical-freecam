@@ -63,3 +63,8 @@ The chunk states that are detected are
 -Unloaded: Chunks outside your simulation distance but still exist.
 
 -Invalid: Chunks that do not exist currently in memory.
+
+
+**Official Page Curseforge Page**
+[https://www.curseforge.com/minecraft-bedrock/scripts/technical-freecam
+](url)

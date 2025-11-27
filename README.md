@@ -11,15 +11,13 @@
 
 -No entity anchor
 
--chunk state information
+-Chunk state information
 
--camera teleport command
+-Quality of life commands
 
--chunk state command
+-Complete freecam without loading chunks
 
--complete freecam without loading chunks
-
--allows you to add waypoints to teleport to so you only have to type a position once 
+-Allows you to add waypoints to teleport to so you only have to type a position once 
 
 -Multiplayer supported
 

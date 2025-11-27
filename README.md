@@ -25,6 +25,7 @@
 
 
  **Waypoints**
+ 
  Waypoints allow you to set a point and then teleport your camera to it later without having to remember the coordinate. Waypoints are persistent and exist past relog.
 
  

@@ -29,16 +29,18 @@ function removeFromMap(player) {
 }
 
 world.afterEvents.playerButtonInput.subscribe((eventData) => {
-    const { player } = eventData;
-    const playerId = player.id;
-    let tapTimes = sneakTapTimes.get(playerId) || [];
-    tapTimes.push(currentTick);
-    tapTimes = tapTimes.filter(t => currentTick - t <= sneakTapWindow);
-    sneakTapTimes.set(playerId, tapTimes);
+    if (eventData.button === "Sneak") {
+        const { player } = eventData;
+        const playerId = player.id;
+        let tapTimes = sneakTapTimes.get(playerId) || [];
+        tapTimes.push(currentTick);
+        tapTimes = tapTimes.filter(t => currentTick - t <= sneakTapWindow);
+        sneakTapTimes.set(playerId, tapTimes);
 
-    if (tapTimes.length >= 6) {
-        toggleFreecam(player)
-        sneakTapTimes.set(playerId, []);
+        if (tapTimes.length >= 6) {
+            toggleFreecam(player)
+            sneakTapTimes.set(playerId, []);
+        }
     }
 });
 
@@ -129,7 +131,9 @@ async function updateChunkDetails(player, pos) {
 
 export function updateCamPos(player, pos) {
     playerMap[player.name].pos = pos;
-    updateChunkDetails(player, pos)
+    system.runTimeout(() => {
+        updateChunkDetails(player, pos)
+    }, 1)
 }
 
 export async function getChunkStateString(player, pos) {
@@ -158,6 +162,14 @@ function displayChunkState(player) {
     player.runCommand(`title @s actionbar §7Chunk state: ${state} \n§7Pos: ${x} ${y} ${z}`)
 }
 
+export function teleportPlayerToCamera(player) {
+    if (playerMap[player.name]) {
+        const pos = playerMap[player.name].pos;
+        player.runCommand(`tp @s ${pos.x} ${pos.y} ${pos.z}`)
+    } else {
+        throw new Error("You are not in freecam.")
+    }
+}
 
 function handleRelativeDirection(player, direction, distance) {
     const currentPos = playerMap[player.name]?.pos
@@ -234,7 +246,6 @@ let fcinterval = system.runInterval(() => {
             }
 
             if (movementVector.y === 0 && movementVector.x === 0 &&
-                player.inputInfo.getButtonState("Jump") !== "Pressed" &&
                 player.inputInfo.getButtonState("Sneak") !== "Pressed" &&
                 playerMap[player.name].fastFly) {
                 playerMap[player.name].fastFly = false;
@@ -279,3 +290,4 @@ let fcinterval = system.runInterval(() => {
         }
     }
 })
+

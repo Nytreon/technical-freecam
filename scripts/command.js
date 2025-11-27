@@ -1,5 +1,5 @@
 import { system, CommandPermissionLevel, CustomCommandParamType, CustomCommandStatus } from "@minecraft/server";
-import { updateCamPos, getChunkStateString, toggleFreecam, toggleCameraView} from "./main.js"
+import { updateCamPos, getChunkStateString, toggleFreecam, toggleCameraView, teleportPlayerToCamera} from "./main.js"
 import { Waypoints } from "./waypoint.js"
 
 system.beforeEvents.startup.subscribe(e => {
@@ -108,5 +108,25 @@ system.beforeEvents.startup.subscribe(e => {
         } catch(error) {
             player.sendMessage(`§c${error}`)
         }
+    });
+});
+
+
+system.beforeEvents.startup.subscribe(e => {
+    const { customCommandRegistry: reg } = e;
+
+    reg.registerCommand({
+        name: "fc:tocam",
+        description: "Teleport you to your freecam camera.",
+        permissionLevel: CommandPermissionLevel.Admin,
+    }, (origin) => {
+        system.run( () => {
+            const player = origin.sourceEntity;
+            try {
+                teleportPlayerToCamera(player)
+            } catch(error) {
+                player.sendMessage(`§c${error}`)
+            }
+        });
     });
 });
